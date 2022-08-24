@@ -5,6 +5,9 @@ POC Sanitas Calculator API
 * Java 17
 * Spring Boot 2.7.3
 
+# Tools
+* Apicurio: https://studio.apicur.io/dashboard
+
 # Requirements
 * Tracer-1.0.0.jar
 * To install the jar dependency locally in the .m2 folder:
