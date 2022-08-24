@@ -17,7 +17,7 @@ public interface BasicArithmeticOperationStrategy {
 	/**
 	 * Gets the result.
 	 *
-	 * @param firstValue the first value
+	 * @param firstValue  the first value
 	 * @param secondValue the second value
 	 * @return the result
 	 */

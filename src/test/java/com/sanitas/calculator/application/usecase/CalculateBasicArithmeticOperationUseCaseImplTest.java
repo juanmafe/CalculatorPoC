@@ -24,7 +24,8 @@ import com.sanitas.calculator.utils.EasyRandomUtil;
  * The Class CalculateBasicArithmeticOperationUseCaseImplTest.
  */
 @ExtendWith({ SpringExtension.class, MockitoExtension.class })
-@ContextConfiguration(classes = { CalculateBasicArithmeticOperationUseCaseImpl.class, BasicArithmeticOperationContext.class, AdditionOperation.class, SubtractionOperation.class })
+@ContextConfiguration(classes = { CalculateBasicArithmeticOperationUseCaseImpl.class,
+		BasicArithmeticOperationContext.class, AdditionOperation.class, SubtractionOperation.class })
 class CalculateBasicArithmeticOperationUseCaseImplTest {
 
 	/** The calculate basic arithmetic operation use case. */

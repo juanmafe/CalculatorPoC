@@ -31,7 +31,8 @@ public class BasicArithmeticOperationContext implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		this.map = new HashMap<>();
-		basicArithmeticStrategies.forEach(basicArithmeticStrategies -> map.put(basicArithmeticStrategies.getType(), basicArithmeticStrategies));
+		basicArithmeticStrategies.forEach(
+				basicArithmeticStrategies -> map.put(basicArithmeticStrategies.getType(), basicArithmeticStrategies));
 	}
 
 	/**
@@ -41,7 +42,8 @@ public class BasicArithmeticOperationContext implements InitializingBean {
 	 * @return the result
 	 */
 	public Integer getResult(@Valid final BasicArithmeticOperationDTO operation) {
-		return this.map.get(operation.getBasicArithmeticOperator()).getResult(operation.getFirstNumber(), operation.getSecondNumber());
+		return this.map.get(operation.getBasicArithmeticOperator()).getResult(operation.getFirstNumber(),
+				operation.getSecondNumber());
 	}
 
 }
