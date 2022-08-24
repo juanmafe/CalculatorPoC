@@ -2,6 +2,8 @@ package com.sanitas.calculator.apirest.aspect;
 
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,10 @@ import io.corp.calculator.TracerImpl;
 @Component
 public class AspectResutl {
 
+	/** The context. */
+	@Autowired
+	ApplicationContext context;
+
 	/**
 	 * Prints the result.
 	 *
@@ -23,7 +29,7 @@ public class AspectResutl {
 	public void printResult(Object result) {
 
 		ResponseEntity<Integer> responseEntity = (ResponseEntity) result;
-		TracerImpl tracer = new TracerImpl();
+		TracerImpl tracer = context.getBean(TracerImpl.class);
 		tracer.trace(responseEntity.getBody());
 	}
 }
