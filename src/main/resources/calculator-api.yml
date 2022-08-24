@@ -7,36 +7,16 @@ paths:
     /api/v1/arithmetic/basic:
         summary: Service for performing basic arithmetic operations between two numbers
         description: |-
-            Service for performing basic arithmetic operations between two numbers
-            Basic arithmetic operations supported: addition, subtraction
-        get:
+            Service for performing basic arithmetic operations between two numbers. The basic arithmetic operations supported are addition and subtraction.
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/BasicArithmeticOperationRequest'
+                required: true
             tags:
                 - basic-arithmetic-operation-v1
-            parameters:
-                -
-                    name: firstNumber
-                    description: First number
-                    schema:
-                        type: integer
-                    in: header
-                    required: true
-                -
-                    name: secondNumber
-                    description: Second number
-                    schema:
-                        type: integer
-                    in: header
-                    required: true
-                -
-                    name: basicArithmeticOperator
-                    description: Basic arithmetic operator
-                    schema:
-                        enum:
-                            - ADDITION
-                            - SUBTRACTION
-                        type: string
-                    in: header
-                    required: true
             responses:
                 '200':
                     content:
@@ -69,6 +49,26 @@ components:
                 detail:
                     description: Error detail
                     type: string
+        BasicArithmeticOperationRequest:
+            description: Basic Arithmetic Operation Request
+            required:
+                - basicArithmeticOperator
+                - firstNumber
+                - secondNumber
+            type: object
+            properties:
+                basicArithmeticOperator:
+                    description: Basic Arithmetic Operator
+                    enum:
+                        - ADDITION
+                        - SUBTRACTION
+                    type: string
+                firstNumber:
+                    description: First number
+                    type: integer
+                secondNumber:
+                    description: Second number
+                    type: integer
     responses:
         400BadRequestError:
             content:

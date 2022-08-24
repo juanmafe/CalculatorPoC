@@ -96,6 +96,7 @@
 							<inputSpec>${project.basedir}/src/main/resources/calculator-api.yml</inputSpec>
 							<generatorName>spring</generatorName>
 							<generateSupportingFiles>false</generateSupportingFiles>
+							<modelNameSuffix>DTO</modelNameSuffix>
 							<apiPackage>com.sanitas.api</apiPackage>
 							<modelPackage>com.sanitas.model</modelPackage>
 							<configOptions>

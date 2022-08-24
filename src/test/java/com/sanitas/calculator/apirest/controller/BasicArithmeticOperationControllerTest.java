@@ -1,7 +1,6 @@
 package com.sanitas.calculator.apirest.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -12,6 +11,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sanitas.model.BasicArithmeticOperationRequestDTO;
+import com.sanitas.model.BasicArithmeticOperationRequestDTO.BasicArithmeticOperatorEnum;
+
 @WebMvcTest(BasicArithmeticOperationController.class)
 class BasicArithmeticOperationControllerTest {
 
@@ -19,38 +22,26 @@ class BasicArithmeticOperationControllerTest {
 	@Autowired
 	MockMvc mockMvc;
 
-	/** The first number. */
-	static String FIRST_NUMBER = "firstNumber";
-
-	/** The second number. */
-	static String SECOND_NUMBER = "secondNumber";
-
-	/** The basic arithmetic operator. */
-	static String BASIC_ARITHMETIC_OPERATOR = "basicArithmeticOperator";
+	/** The object mapper. */
+	@Autowired
+	ObjectMapper objectMapper;
 
 	/**
-	 * Test basic arithmetic operation V 1 addition success.
+	 * Test basic arithmetic operation V 1 success.
 	 *
 	 * @throws Exception the exception
 	 */
 	@Test
-	void testBasicArithmeticOperationV1_addition_success() throws Exception {
-		final ResultActions response = this.mockMvc
-				.perform(get("/api/v1/arithmetic/basic").header(FIRST_NUMBER, 2).header(SECOND_NUMBER, 2)
-						.header(BASIC_ARITHMETIC_OPERATOR, "ADDITION").contentType(MediaType.APPLICATION_JSON));
-		response.andDo(print()).andExpect(status().isOk());
-	}
+	void testBasicArithmeticOperationV1_success() throws Exception {
 
-	/**
-	 * Test basic arithmetic operation V 1 subtraction success.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	void testBasicArithmeticOperationV1_subtraction_success() throws Exception {
-		final ResultActions response = this.mockMvc
-				.perform(get("/api/v1/arithmetic/basic").header(FIRST_NUMBER, 4).header(SECOND_NUMBER, 2)
-						.header(BASIC_ARITHMETIC_OPERATOR, "SUBTRACTION").contentType(MediaType.APPLICATION_JSON));
+		BasicArithmeticOperationRequestDTO request = new BasicArithmeticOperationRequestDTO();
+		request.setBasicArithmeticOperator(BasicArithmeticOperatorEnum.ADDITION);
+		request.setFirstNumber(5);
+		request.setSecondNumber(4);
+
+		final ResultActions response = this.mockMvc.perform(post("/api/v1/arithmetic/basic")
+				.content(this.objectMapper.writeValueAsString(request))
+				.contentType(MediaType.APPLICATION_JSON));
 		response.andDo(print()).andExpect(status().isOk());
 	}
 
@@ -61,8 +52,14 @@ class BasicArithmeticOperationControllerTest {
 	 */
 	@Test
 	void testBasicArithmeticOperationV1_firstNumber_fail() throws Exception {
-		final ResultActions response = this.mockMvc.perform(get("/api/v1/arithmetic/basic").header(SECOND_NUMBER, 5)
-				.header(BASIC_ARITHMETIC_OPERATOR, "ADDITION").contentType(MediaType.APPLICATION_JSON));
+
+		BasicArithmeticOperationRequestDTO request = new BasicArithmeticOperationRequestDTO();
+		request.setBasicArithmeticOperator(BasicArithmeticOperatorEnum.ADDITION);
+		request.setSecondNumber(4);
+
+		final ResultActions response = this.mockMvc.perform(post("/api/v1/arithmetic/basic")
+				.content(this.objectMapper.writeValueAsString(request))
+				.contentType(MediaType.APPLICATION_JSON));
 		response.andDo(print()).andExpect(status().is4xxClientError());
 	}
 
@@ -73,8 +70,14 @@ class BasicArithmeticOperationControllerTest {
 	 */
 	@Test
 	void testBasicArithmeticOperationV1_secondNumber_fail() throws Exception {
-		final ResultActions response = this.mockMvc.perform(get("/api/v1/arithmetic/basic").header(FIRST_NUMBER, 6)
-				.header(BASIC_ARITHMETIC_OPERATOR, "SUBTRACTION").contentType(MediaType.APPLICATION_JSON));
+
+		BasicArithmeticOperationRequestDTO request = new BasicArithmeticOperationRequestDTO();
+		request.setBasicArithmeticOperator(BasicArithmeticOperatorEnum.ADDITION);
+		request.setFirstNumber(5);
+
+		final ResultActions response = this.mockMvc.perform(post("/api/v1/arithmetic/basic")
+				.content(this.objectMapper.writeValueAsString(request))
+				.contentType(MediaType.APPLICATION_JSON));
 		response.andDo(print()).andExpect(status().is4xxClientError());
 	}
 
@@ -85,8 +88,14 @@ class BasicArithmeticOperationControllerTest {
 	 */
 	@Test
 	void testBasicArithmeticOperationV1_basicArithmeticOperator_fail() throws Exception {
-		final ResultActions response = this.mockMvc.perform(get("/api/v1/arithmetic/basic").header(FIRST_NUMBER, 4)
-				.header(SECOND_NUMBER, 1).contentType(MediaType.APPLICATION_JSON));
+
+		BasicArithmeticOperationRequestDTO request = new BasicArithmeticOperationRequestDTO();
+		request.setFirstNumber(5);
+		request.setSecondNumber(4);
+
+		final ResultActions response = this.mockMvc.perform(post("/api/v1/arithmetic/basic")
+				.content(this.objectMapper.writeValueAsString(request))
+				.contentType(MediaType.APPLICATION_JSON));
 		response.andDo(print()).andExpect(status().is4xxClientError());
 	}
 }

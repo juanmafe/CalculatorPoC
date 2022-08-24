@@ -1,14 +1,15 @@
 package com.sanitas.calculator.apirest.controller;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanitas.api.BasicArithmeticOperationV1Api;
+import com.sanitas.model.BasicArithmeticOperationRequestDTO;
 
 /**
  * The Class BasicArithmeticOperationController.
@@ -18,8 +19,14 @@ import com.sanitas.api.BasicArithmeticOperationV1Api;
 public class BasicArithmeticOperationController implements BasicArithmeticOperationV1Api {
 
 	@Override
-	public ResponseEntity<Integer> basicArithmeticOperationV1(@NotNull final Integer firstNumber, @NotNull final Integer secondNumber,
-			@Valid final String basicArithmeticOperator) {
+	public ResponseEntity<Integer> basicArithmeticOperationV1(
+			@Valid final BasicArithmeticOperationRequestDTO basicArithmeticOperationRequestDTO) {
+		
+		if (ObjectUtils.anyNull(basicArithmeticOperationRequestDTO.getFirstNumber(),
+				basicArithmeticOperationRequestDTO.getSecondNumber(),
+				basicArithmeticOperationRequestDTO.getBasicArithmeticOperator())) {
+			throw new IllegalArgumentException();
+		}
 		return new ResponseEntity<>(5, HttpStatus.OK);
 	}
 
