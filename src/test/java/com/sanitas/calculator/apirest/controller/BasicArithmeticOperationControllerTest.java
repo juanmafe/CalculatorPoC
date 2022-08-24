@@ -16,6 +16,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sanitas.calculator.utils.EasyRandomUtil;
 import com.sanitas.model.BasicArithmeticOperationRequestDTO;
 
+/**
+ * The Class BasicArithmeticOperationControllerTest.
+ */
 @WebMvcTest(BasicArithmeticOperationController.class)
 class BasicArithmeticOperationControllerTest {
 
@@ -39,8 +42,7 @@ class BasicArithmeticOperationControllerTest {
 		BasicArithmeticOperationRequestDTO request = generator.nextObject(BasicArithmeticOperationRequestDTO.class);
 
 		final ResultActions response = this.mockMvc.perform(post("/api/v1/arithmetic/basic")
-				.content(this.objectMapper.writeValueAsString(request))
-				.contentType(MediaType.APPLICATION_JSON));
+				.content(this.objectMapper.writeValueAsString(request)).contentType(MediaType.APPLICATION_JSON));
 		response.andDo(print()).andExpect(status().isOk());
 	}
 
@@ -57,9 +59,8 @@ class BasicArithmeticOperationControllerTest {
 		request.setFirstNumber(null);
 
 		final ResultActions response = this.mockMvc.perform(post("/api/v1/arithmetic/basic")
-				.content(this.objectMapper.writeValueAsString(request))
-				.contentType(MediaType.APPLICATION_JSON));
-		response.andDo(print()).andExpect(status().is4xxClientError());
+				.content(this.objectMapper.writeValueAsString(request)).contentType(MediaType.APPLICATION_JSON));
+		response.andDo(print()).andExpect(status().isBadRequest());
 	}
 
 	/**
@@ -75,9 +76,8 @@ class BasicArithmeticOperationControllerTest {
 		request.setSecondNumber(null);
 
 		final ResultActions response = this.mockMvc.perform(post("/api/v1/arithmetic/basic")
-				.content(this.objectMapper.writeValueAsString(request))
-				.contentType(MediaType.APPLICATION_JSON));
-		response.andDo(print()).andExpect(status().is4xxClientError());
+				.content(this.objectMapper.writeValueAsString(request)).contentType(MediaType.APPLICATION_JSON));
+		response.andDo(print()).andExpect(status().isBadRequest());
 	}
 
 	/**
@@ -93,9 +93,8 @@ class BasicArithmeticOperationControllerTest {
 		request.setBasicArithmeticOperator(null);
 
 		final ResultActions response = this.mockMvc.perform(post("/api/v1/arithmetic/basic")
-				.content(this.objectMapper.writeValueAsString(request))
-				.contentType(MediaType.APPLICATION_JSON));
-		response.andDo(print()).andExpect(status().is4xxClientError());
+				.content(this.objectMapper.writeValueAsString(request)).contentType(MediaType.APPLICATION_JSON));
+		response.andDo(print()).andExpect(status().isBadRequest());
 	}
 
 }

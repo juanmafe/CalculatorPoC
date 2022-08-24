@@ -38,8 +38,8 @@ public class RestErrorHandler {
 	/**
 	 * Handle exception.
 	 *
-	 * @param excep the excep
-	 * @param request the request
+	 * @param excep    the excep
+	 * @param request  the request
 	 * @param response the response
 	 * @return the api error
 	 */

@@ -23,6 +23,7 @@
 		<jackson-databind-nullable.version>0.2.3</jackson-databind-nullable.version>
 		<easy-random-core.version>5.0.0</easy-random-core.version>
 		<easy-random-vavr-extension.version>1.0.0</easy-random-vavr-extension.version>
+		<mapstruct.version>1.5.2.Final</mapstruct.version>
 	</properties>
 
 	<dependencies>
@@ -55,6 +56,18 @@
 			<groupId>org.openapitools</groupId>
 			<artifactId>jackson-databind-nullable</artifactId>
 			<version>${jackson-databind-nullable.version}</version>
+		</dependency>
+
+		<!-- MAPSTRUCT -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${mapstruct.version}</version>
 		</dependency>
 
 		<!-- TEST -->

@@ -21,7 +21,7 @@ public class BasicArithmeticOperationController implements BasicArithmeticOperat
 	@Override
 	public ResponseEntity<Integer> basicArithmeticOperationV1(
 			@Valid final BasicArithmeticOperationRequestDTO basicArithmeticOperationRequestDTO) {
-		
+
 		if (ObjectUtils.anyNull(basicArithmeticOperationRequestDTO.getFirstNumber(),
 				basicArithmeticOperationRequestDTO.getSecondNumber(),
 				basicArithmeticOperationRequestDTO.getBasicArithmeticOperator())) {

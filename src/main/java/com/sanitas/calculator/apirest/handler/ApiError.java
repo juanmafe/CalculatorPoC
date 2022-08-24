@@ -35,10 +35,10 @@ public class ApiError {
 	/**
 	 * Instantiates a new api error.
 	 *
-	 * @param title the title
-	 * @param status the status
+	 * @param title   the title
+	 * @param status  the status
 	 * @param message the message
-	 * @param error the error
+	 * @param error   the error
 	 */
 	public ApiError(final String title, final HttpStatus status, final String message, final Object error) {
 		super();
