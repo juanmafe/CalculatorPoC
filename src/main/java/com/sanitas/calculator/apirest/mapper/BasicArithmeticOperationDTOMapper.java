@@ -8,7 +8,7 @@ import com.sanitas.model.BasicArithmeticOperationRequestDTO;
 /**
  * The Interface BasicArithmeticOperationDTOMapper.
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {BasicArithmeticOperationMapper.class})
 public interface BasicArithmeticOperationDTOMapper {
 
 	/**

@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sanitas.calculator.apirest.handler.RestErrorHandler;
 import com.sanitas.calculator.apirest.mapper.BasicArithmeticOperationDTOMapperImpl;
+import com.sanitas.calculator.apirest.mapper.BasicArithmeticOperationMapperImpl;
 import com.sanitas.calculator.domain.model.BasicArithmeticOperationDTO;
 import com.sanitas.calculator.domain.usecase.CalculateBasicArithmeticOperationUseCase;
 import com.sanitas.calculator.utils.EasyRandomUtil;
@@ -31,7 +32,7 @@ import com.sanitas.model.BasicArithmeticOperationRequestDTO;
  */
 @WebMvcTest(BasicArithmeticOperationController.class)
 @ContextConfiguration(classes = { BasicArithmeticOperationController.class, RestErrorHandler.class,
-		BasicArithmeticOperationDTOMapperImpl.class })
+		BasicArithmeticOperationDTOMapperImpl.class, BasicArithmeticOperationMapperImpl.class })
 class BasicArithmeticOperationControllerTest {
 
 	/** The mock mvc. */
