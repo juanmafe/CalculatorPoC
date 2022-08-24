@@ -1,0 +1,88 @@
+openapi: 3.0.2
+info:
+    title: sanitas-calculator-api
+    version: 1.0.0
+    description: Sanitas Calculator API
+paths:
+    /api/v1/arithmetic/basic:
+        summary: Service for performing basic arithmetic operations between two numbers
+        description: |-
+            Service for performing basic arithmetic operations between two numbers
+            Basic arithmetic operations supported: addition, subtraction
+        get:
+            tags:
+                - basic-arithmetic-operation-v1
+            parameters:
+                -
+                    name: firstNumber
+                    description: First number
+                    schema:
+                        type: integer
+                    in: header
+                    required: true
+                -
+                    name: secondNumber
+                    description: Second number
+                    schema:
+                        type: integer
+                    in: header
+                    required: true
+                -
+                    name: basicArithmeticOperator
+                    description: Basic arithmetic operator
+                    schema:
+                        enum:
+                            - ADDITION
+                            - SUBTRACTION
+                        type: string
+                    in: header
+                    required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: integer
+                    description: 200 OK
+                '400':
+                    $ref: '#/components/responses/400BadRequestError'
+                '500':
+                    $ref: '#/components/responses/500InternalServerError'
+            operationId: basicArithmeticOperationV1
+            summary: Service for basic arithmetic operations
+            description: Service for basic arithmetic operations
+components:
+    schemas:
+        ErrorObject:
+            description: Display an error message.
+            required:
+                - code
+                - title
+            type: object
+            properties:
+                code:
+                    description: Error code
+                    type: integer
+                title:
+                    description: Error title
+                    type: string
+                detail:
+                    description: Error detail
+                    type: string
+    responses:
+        400BadRequestError:
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/ErrorObject'
+            description: List of errors
+        500InternalServerError:
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/ErrorObject'
+            description: List of errors
+tags:
+    -
+        name: sanitas-calculator-api-v1
+        description: First version Sanitas Calculator API
