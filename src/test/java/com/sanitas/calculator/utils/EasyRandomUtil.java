@@ -29,7 +29,7 @@ public class EasyRandomUtil {
 
 		return new EasyRandomParameters().seed(12345L).objectPoolSize(100).randomizationDepth(3).charset(charset)
 				.collectionSizeRange(1, 10).scanClasspathForConcreteTypes(true).overrideDefaultInitialization(false)
-				.ignoreRandomizationErrors(true).randomize(Integer.class, () -> RandomUtils.nextInt(1, 999999))
+				.ignoreRandomizationErrors(true).randomize(Integer.class, () -> RandomUtils.nextInt(1, 999))
 				.randomizerRegistry(vavrRandomizerRegistry);
 	}
 

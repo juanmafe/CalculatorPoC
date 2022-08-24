@@ -21,7 +21,7 @@ public class CalculateBasicArithmeticOperationUseCaseImpl implements CalculateBa
 
 		if (ObjectUtils.anyNull(operation.getFirstNumber(), operation.getSecondNumber(),
 				operation.getBasicArithmeticOperator())) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid parameter");
 		}
 
 		return 5;
