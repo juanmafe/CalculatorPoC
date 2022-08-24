@@ -35,6 +35,14 @@ public class RestErrorHandler {
 	@Autowired
 	private LocaleResolver localeResolver;
 
+	/**
+	 * Handle exception.
+	 *
+	 * @param excep the excep
+	 * @param request the request
+	 * @param response the response
+	 * @return the api error
+	 */
 	@ExceptionHandler(value = { IllegalArgumentException.class })
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	public ApiError handleException(final IllegalArgumentException excep, final HttpServletRequest request,

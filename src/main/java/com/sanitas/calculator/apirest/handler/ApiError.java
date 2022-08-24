@@ -16,6 +16,7 @@ import lombok.Singular;
 @Getter
 @Builder
 @AllArgsConstructor
+@SuppressWarnings("unused")
 public class ApiError {
 
 	/** The title. */

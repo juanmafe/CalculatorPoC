@@ -21,6 +21,8 @@
 		<tracer.version>1.0.0</tracer.version>
 		<openapi-generator.version>6.0.1</openapi-generator.version>
 		<jackson-databind-nullable.version>0.2.3</jackson-databind-nullable.version>
+		<easy-random-core.version>5.0.0</easy-random-core.version>
+		<easy-random-vavr-extension.version>1.0.0</easy-random-vavr-extension.version>
 	</properties>
 
 	<dependencies>
@@ -55,6 +57,7 @@
 			<version>${jackson-databind-nullable.version}</version>
 		</dependency>
 
+		<!-- TEST -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -64,6 +67,18 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-junit-jupiter</artifactId>
 			<optional>true</optional>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jeasy</groupId>
+			<artifactId>easy-random-core</artifactId>
+			<version>${easy-random-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.github.xshadov</groupId>
+			<artifactId>easy-random-vavr-extension</artifactId>
+			<version>${easy-random-vavr-extension.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
