@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.sanitas.calculator.application.strategy.AdditionOperation;
+import com.sanitas.calculator.application.strategy.BasicArithmeticOperationContext;
+import com.sanitas.calculator.application.strategy.SubtractionOperation;
 import com.sanitas.calculator.domain.model.BasicArithmeticOperationDTO;
 import com.sanitas.calculator.domain.model.BasicArithmeticOperationEnum;
 import com.sanitas.calculator.domain.usecase.CalculateBasicArithmeticOperationUseCase;
@@ -21,7 +24,7 @@ import com.sanitas.calculator.utils.EasyRandomUtil;
  * The Class CalculateBasicArithmeticOperationUseCaseImplTest.
  */
 @ExtendWith({ SpringExtension.class, MockitoExtension.class })
-@ContextConfiguration(classes = { CalculateBasicArithmeticOperationUseCaseImpl.class })
+@ContextConfiguration(classes = { CalculateBasicArithmeticOperationUseCaseImpl.class, BasicArithmeticOperationContext.class, AdditionOperation.class, SubtractionOperation.class })
 class CalculateBasicArithmeticOperationUseCaseImplTest {
 
 	/** The calculate basic arithmetic operation use case. */
@@ -42,6 +45,9 @@ class CalculateBasicArithmeticOperationUseCaseImplTest {
 		assertEquals(operation.getFirstNumber() + operation.getSecondNumber(), response);
 	}
 
+	/**
+	 * Test calculate subtraction success.
+	 */
 	@Test
 	void testCalculate_subtraction_success() {
 
@@ -53,6 +59,9 @@ class CalculateBasicArithmeticOperationUseCaseImplTest {
 		assertEquals(operation.getFirstNumber() - operation.getSecondNumber(), response);
 	}
 
+	/**
+	 * Test calculate first number fail.
+	 */
 	@Test
 	void testCalculate_firstNumber_fail() {
 
@@ -67,6 +76,9 @@ class CalculateBasicArithmeticOperationUseCaseImplTest {
 		assertTrue(exception.getMessage().contains("Invalid parameter"));
 	}
 
+	/**
+	 * Test calculate second number fail.
+	 */
 	@Test
 	void testCalculate_secondNumber_fail() {
 
@@ -81,6 +93,9 @@ class CalculateBasicArithmeticOperationUseCaseImplTest {
 		assertTrue(exception.getMessage().contains("Invalid parameter"));
 	}
 
+	/**
+	 * Test calculate basic arithmetic operator fail.
+	 */
 	@Test
 	void testCalculate_basicArithmeticOperator_fail() {
 

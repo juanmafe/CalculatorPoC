@@ -3,9 +3,11 @@ package com.sanitas.calculator.application.usecase;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import com.sanitas.calculator.application.strategy.BasicArithmeticOperationContext;
 import com.sanitas.calculator.domain.model.BasicArithmeticOperationDTO;
 import com.sanitas.calculator.domain.usecase.CalculateBasicArithmeticOperationUseCase;
 
@@ -16,6 +18,10 @@ import com.sanitas.calculator.domain.usecase.CalculateBasicArithmeticOperationUs
 @Service
 public class CalculateBasicArithmeticOperationUseCaseImpl implements CalculateBasicArithmeticOperationUseCase {
 
+	/** The basic arithmetic operation context. */
+	@Autowired
+	private BasicArithmeticOperationContext basicArithmeticOperationContext;
+
 	@Override
 	public Integer calculate(@Valid final BasicArithmeticOperationDTO operation) {
 
@@ -24,7 +30,7 @@ public class CalculateBasicArithmeticOperationUseCaseImpl implements CalculateBa
 			throw new IllegalArgumentException("Invalid parameter");
 		}
 
-		return 5;
+		return basicArithmeticOperationContext.getResult(operation);
 	}
 
 }
