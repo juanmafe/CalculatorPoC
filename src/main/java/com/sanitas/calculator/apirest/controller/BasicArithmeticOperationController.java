@@ -2,13 +2,15 @@ package com.sanitas.calculator.apirest.controller;
 
 import javax.validation.Valid;
 
-import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanitas.api.BasicArithmeticOperationV1Api;
+import com.sanitas.calculator.apirest.mapper.BasicArithmeticOperationDTOMapper;
+import com.sanitas.calculator.domain.usecase.CalculateBasicArithmeticOperationUseCase;
 import com.sanitas.model.BasicArithmeticOperationRequestDTO;
 
 /**
@@ -18,16 +20,22 @@ import com.sanitas.model.BasicArithmeticOperationRequestDTO;
 @RestController
 public class BasicArithmeticOperationController implements BasicArithmeticOperationV1Api {
 
+	/** The calculate basic arithmetic operation use case. */
+	@Autowired
+	private CalculateBasicArithmeticOperationUseCase calculateBasicArithmeticOperationUseCase;
+
+	/** The basic arithmetic operation DTO mapper. */
+	@Autowired
+	private BasicArithmeticOperationDTOMapper basicArithmeticOperationDTOMapper;
+
 	@Override
 	public ResponseEntity<Integer> basicArithmeticOperationV1(
 			@Valid final BasicArithmeticOperationRequestDTO basicArithmeticOperationRequestDTO) {
 
-		if (ObjectUtils.anyNull(basicArithmeticOperationRequestDTO.getFirstNumber(),
-				basicArithmeticOperationRequestDTO.getSecondNumber(),
-				basicArithmeticOperationRequestDTO.getBasicArithmeticOperator())) {
-			throw new IllegalArgumentException();
-		}
-		return new ResponseEntity<>(5, HttpStatus.OK);
+		final Integer result = calculateBasicArithmeticOperationUseCase.calculate(this.basicArithmeticOperationDTOMapper
+				.toBasicArithmeticOperationDTO(basicArithmeticOperationRequestDTO));
+
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 }

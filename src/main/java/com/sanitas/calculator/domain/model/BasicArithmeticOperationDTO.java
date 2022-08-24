@@ -2,8 +2,10 @@ package com.sanitas.calculator.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,5 +17,5 @@ public class BasicArithmeticOperationDTO {
 	private Integer firstNumber;
 
 	private Integer secondNumber;
-	
+
 }

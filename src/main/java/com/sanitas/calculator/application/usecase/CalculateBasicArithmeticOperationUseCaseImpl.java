@@ -2,6 +2,7 @@ package com.sanitas.calculator.application.usecase;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -17,6 +18,12 @@ public class CalculateBasicArithmeticOperationUseCaseImpl implements CalculateBa
 
 	@Override
 	public Integer calculate(@Valid final BasicArithmeticOperationDTO operation) {
+
+		if (ObjectUtils.anyNull(operation.getFirstNumber(), operation.getSecondNumber(),
+				operation.getBasicArithmeticOperator())) {
+			throw new IllegalArgumentException();
+		}
+
 		return 5;
 	}
 
