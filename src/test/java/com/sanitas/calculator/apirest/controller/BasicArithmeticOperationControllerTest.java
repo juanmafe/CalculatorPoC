@@ -9,10 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sanitas.calculator.apirest.handler.RestErrorHandler;
 import com.sanitas.calculator.utils.EasyRandomUtil;
 import com.sanitas.model.BasicArithmeticOperationRequestDTO;
 
@@ -20,6 +22,7 @@ import com.sanitas.model.BasicArithmeticOperationRequestDTO;
  * The Class BasicArithmeticOperationControllerTest.
  */
 @WebMvcTest(BasicArithmeticOperationController.class)
+@ContextConfiguration(classes = {BasicArithmeticOperationController.class, RestErrorHandler.class})
 class BasicArithmeticOperationControllerTest {
 
 	/** The mock mvc. */
