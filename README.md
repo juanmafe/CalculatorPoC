@@ -15,3 +15,9 @@ POC Sanitas Calculator API
 mvn install:install-file -Dfile=tracer-1.0.0.jar -DgroupId=io.corp.calculator -DartifactId=tracer
 -Dversion=1.0.0 -Dpackaging=jar -DgeneratePom=true
 ```
+
+# How to run the app
+* Execute this command in the root folder of the project
+```
+mvn spring-boot:run
+```
