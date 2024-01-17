@@ -1,4 +1,4 @@
-# SanitasCalculator
+# Calculator
 POC Sanitas Calculator API
 
 # Information
